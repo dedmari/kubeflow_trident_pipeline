@@ -1,0 +1,569 @@
+Sending build context to Docker daemon  10.24kB
+Step 1/9 : FROM ubuntu:16.04
+ ---> 13c9f1285025
+Step 2/9 : RUN apt-get update -y &&     apt-get install --no-install-recommends -y -q ca-certificates curl python-dev python-setuptools wget unzip
+ ---> Using cache
+ ---> eeaff3444795
+Step 3/9 : RUN easy_install pip &&     pip install pyyaml six requests
+ ---> Using cache
+ ---> 5073f4ec7a01
+Step 4/9 : RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+ ---> Using cache
+ ---> b1a09b0dfdf3
+Step 5/9 : RUN chmod +x ./kubectl
+ ---> Using cache
+ ---> 01a6eadc2262
+Step 6/9 : RUN mv ./kubectl /usr/local/bin
+ ---> Using cache
+ ---> 170c428db06b
+Step 7/9 : ADD src /workspace
+ ---> Using cache
+ ---> add611632576
+Step 8/9 : WORKDIR /workspace
+ ---> Using cache
+ ---> 863a05c11fec
+Step 9/9 : ENTRYPOINT ["python", "deploy_trtis.py"]
+ ---> Using cache
+ ---> 29eb45e15ab9
+Successfully built 29eb45e15ab9
+Successfully tagged muneer7589/k_pipeline_inference:latest
+The push refers to repository [docker.io/muneer7589/k_pipeline_inference]
+61cf74d64f04: Preparing
+ace71c5b4d4f: Preparing
+681e626e8a1d: Preparing
+ce3c7838a88e: Preparing
+505d7cb4f705: Preparing
+1e8ef3d35450: Preparing
+92d3f22d44f3: Preparing
+10e46f329a25: Preparing
+24ab7de5faec: Preparing
+1ea5a27b0484: Preparing
+92d3f22d44f3: Waiting
+24ab7de5faec: Waiting
+10e46f329a25: Waiting
+1ea5a27b0484: Waiting
+681e626e8a1d: Layer already exists
+ace71c5b4d4f: Layer already exists
+ce3c7838a88e: Layer already exists
+505d7cb4f705: Layer already exists
+61cf74d64f04: Layer already exists
+1e8ef3d35450: Layer already exists
+24ab7de5faec: Layer already exists
+92d3f22d44f3: Layer already exists
+1ea5a27b0484: Layer already exists
+10e46f329a25: Layer already exists
+latest: digest: sha256:310c2a969f7bb18c69e679210b72d5b222b18fe8a7a84cb9da5c07619078823d size: 2417
+Sending build context to Docker daemon  7.168kB
+Step 1/5 : FROM nvcr.io/nvidia/tensorflow:19.03-py3
+ ---> e8ec6af2fb6f
+Step 2/5 : RUN pip install keras
+ ---> Using cache
+ ---> 32c9acc855b6
+Step 3/5 : ADD src /workspace
+ ---> Using cache
+ ---> f6b2120ecc4d
+Step 4/5 : WORKDIR /workspace
+ ---> Using cache
+ ---> 896cc69741e7
+Step 5/5 : ENTRYPOINT ["python", "preprocess.py"]
+ ---> Using cache
+ ---> da4c8cd31b2e
+Successfully built da4c8cd31b2e
+Successfully tagged muneer7589/k_pipeline_preprocess:latest
+The push refers to repository [docker.io/muneer7589/k_pipeline_preprocess]
+d2f61c80b573: Preparing
+97aa01bd17c0: Preparing
+c30822d30af9: Preparing
+4e7f423eb37a: Preparing
+609d11e0f4b4: Preparing
+a07bf05cb83a: Preparing
+a9f3018a8895: Preparing
+a968f02b671c: Preparing
+dd1440ad2291: Preparing
+01a4a7dcafb4: Preparing
+15529aaceccc: Preparing
+938d8c4aed3b: Preparing
+2d5fd1d51b22: Preparing
+197d7fdbc418: Preparing
+a44f76867c74: Preparing
+a07bf05cb83a: Waiting
+7f9845d65e79: Preparing
+80a39348b71c: Preparing
+a9f3018a8895: Waiting
+5f32c050378c: Preparing
+a968f02b671c: Waiting
+1e0e965e204a: Preparing
+f2520cb6b5ab: Preparing
+15ea705dd451: Preparing
+dd1440ad2291: Waiting
+99023a091a0c: Preparing
+60d3b8d0b2bd: Preparing
+01a4a7dcafb4: Waiting
+938d8c4aed3b: Waiting
+46bf4324f787: Preparing
+15529aaceccc: Waiting
+88106997f260: Preparing
+bd801af9e896: Preparing
+a44f76867c74: Waiting
+752b620b32ec: Preparing
+2d5fd1d51b22: Waiting
+2dc424094909: Preparing
+197d7fdbc418: Waiting
+016f33c52907: Preparing
+5f32c050378c: Waiting
+5aa592062747: Preparing
+1e0e965e204a: Waiting
+7f9845d65e79: Waiting
+80a39348b71c: Waiting
+d0ebb5eb7295: Preparing
+58eee5e72f5a: Preparing
+f2520cb6b5ab: Waiting
+88106997f260: Waiting
+2dc424094909: Waiting
+60d3b8d0b2bd: Waiting
+9fbc8f4f0ca6: Preparing
+99023a091a0c: Waiting
+bd801af9e896: Waiting
+abc385e5e64f: Preparing
+752b620b32ec: Waiting
+5aa592062747: Waiting
+016f33c52907: Waiting
+e72af7ecedd5: Preparing
+15ea705dd451: Waiting
+4f77eb683260: Preparing
+d0ebb5eb7295: Waiting
+abc385e5e64f: Waiting
+58eee5e72f5a: Waiting
+9fbc8f4f0ca6: Waiting
+94ce44f61a11: Preparing
+e72af7ecedd5: Waiting
+4f77eb683260: Waiting
+d0ea8a3fa41c: Preparing
+95dcb54e795b: Preparing
+94ce44f61a11: Waiting
+4fc69acb0b71: Preparing
+d0ea8a3fa41c: Waiting
+95dcb54e795b: Waiting
+42dc44a23eca: Preparing
+73c1adc8d887: Preparing
+42dc44a23eca: Waiting
+9f06e59bd1c3: Preparing
+8842d3e40910: Preparing
+73c1adc8d887: Waiting
+68dda0c9a8cd: Preparing
+f67191ae09b8: Preparing
+8842d3e40910: Waiting
+68dda0c9a8cd: Waiting
+b2fd8b4c3da7: Preparing
+f67191ae09b8: Waiting
+0de2edf7bff4: Preparing
+b2fd8b4c3da7: Waiting
+4e7f423eb37a: Layer already exists
+d2f61c80b573: Layer already exists
+c30822d30af9: Layer already exists
+609d11e0f4b4: Layer already exists
+97aa01bd17c0: Layer already exists
+a07bf05cb83a: Layer already exists
+a9f3018a8895: Layer already exists
+dd1440ad2291: Layer already exists
+01a4a7dcafb4: Layer already exists
+a968f02b671c: Layer already exists
+15529aaceccc: Layer already exists
+938d8c4aed3b: Layer already exists
+2d5fd1d51b22: Layer already exists
+a44f76867c74: Layer already exists
+197d7fdbc418: Layer already exists
+7f9845d65e79: Layer already exists
+80a39348b71c: Layer already exists
+5f32c050378c: Layer already exists
+f2520cb6b5ab: Layer already exists
+1e0e965e204a: Layer already exists
+60d3b8d0b2bd: Layer already exists
+99023a091a0c: Layer already exists
+15ea705dd451: Layer already exists
+46bf4324f787: Layer already exists
+88106997f260: Layer already exists
+752b620b32ec: Layer already exists
+bd801af9e896: Layer already exists
+2dc424094909: Layer already exists
+016f33c52907: Layer already exists
+5aa592062747: Layer already exists
+d0ebb5eb7295: Layer already exists
+58eee5e72f5a: Layer already exists
+9fbc8f4f0ca6: Layer already exists
+abc385e5e64f: Layer already exists
+e72af7ecedd5: Layer already exists
+4f77eb683260: Layer already exists
+94ce44f61a11: Layer already exists
+95dcb54e795b: Layer already exists
+d0ea8a3fa41c: Layer already exists
+4fc69acb0b71: Layer already exists
+42dc44a23eca: Layer already exists
+73c1adc8d887: Layer already exists
+9f06e59bd1c3: Layer already exists
+68dda0c9a8cd: Layer already exists
+8842d3e40910: Layer already exists
+f67191ae09b8: Layer already exists
+b2fd8b4c3da7: Layer already exists
+0de2edf7bff4: Layer already exists
+latest: digest: sha256:d2d63de271d46bd98df53518f2b29fe5ccc8f7c673d5398f98f91df66807641c size: 10372
+Sending build context to Docker daemon  31.74kB
+Step 1/5 : FROM nvcr.io/nvidia/tensorflow:19.03-py3
+ ---> e8ec6af2fb6f
+Step 2/5 : RUN pip install keras
+ ---> Using cache
+ ---> 32c9acc855b6
+Step 3/5 : ADD src /workspace
+ ---> Using cache
+ ---> 712404c34213
+Step 4/5 : WORKDIR /workspace
+ ---> Using cache
+ ---> 0324f0b2af05
+Step 5/5 : ENTRYPOINT ["python", "train.py"]
+ ---> Using cache
+ ---> 2cb32f63f94f
+Successfully built 2cb32f63f94f
+Successfully tagged muneer7589/k_pipeline_train:latest
+The push refers to repository [docker.io/muneer7589/k_pipeline_train]
+8f93bbd8b31e: Preparing
+97aa01bd17c0: Preparing
+c30822d30af9: Preparing
+4e7f423eb37a: Preparing
+609d11e0f4b4: Preparing
+a07bf05cb83a: Preparing
+a9f3018a8895: Preparing
+a968f02b671c: Preparing
+dd1440ad2291: Preparing
+01a4a7dcafb4: Preparing
+15529aaceccc: Preparing
+938d8c4aed3b: Preparing
+2d5fd1d51b22: Preparing
+197d7fdbc418: Preparing
+a44f76867c74: Preparing
+7f9845d65e79: Preparing
+80a39348b71c: Preparing
+5f32c050378c: Preparing
+1e0e965e204a: Preparing
+f2520cb6b5ab: Preparing
+15ea705dd451: Preparing
+99023a091a0c: Preparing
+60d3b8d0b2bd: Preparing
+a07bf05cb83a: Waiting
+46bf4324f787: Preparing
+88106997f260: Preparing
+bd801af9e896: Preparing
+752b620b32ec: Preparing
+a9f3018a8895: Waiting
+dd1440ad2291: Waiting
+a968f02b671c: Waiting
+01a4a7dcafb4: Waiting
+a44f76867c74: Waiting
+15ea705dd451: Waiting
+15529aaceccc: Waiting
+7f9845d65e79: Waiting
+1e0e965e204a: Waiting
+2dc424094909: Preparing
+80a39348b71c: Waiting
+938d8c4aed3b: Waiting
+f2520cb6b5ab: Waiting
+5f32c050378c: Waiting
+016f33c52907: Preparing
+197d7fdbc418: Waiting
+5aa592062747: Preparing
+752b620b32ec: Waiting
+bd801af9e896: Waiting
+46bf4324f787: Waiting
+60d3b8d0b2bd: Waiting
+d0ebb5eb7295: Preparing
+2dc424094909: Waiting
+88106997f260: Waiting
+016f33c52907: Waiting
+58eee5e72f5a: Preparing
+d0ebb5eb7295: Waiting
+9fbc8f4f0ca6: Preparing
+58eee5e72f5a: Waiting
+abc385e5e64f: Preparing
+e72af7ecedd5: Preparing
+4f77eb683260: Preparing
+9fbc8f4f0ca6: Waiting
+abc385e5e64f: Waiting
+94ce44f61a11: Preparing
+4f77eb683260: Waiting
+d0ea8a3fa41c: Preparing
+95dcb54e795b: Preparing
+4fc69acb0b71: Preparing
+42dc44a23eca: Preparing
+73c1adc8d887: Preparing
+9f06e59bd1c3: Preparing
+42dc44a23eca: Waiting
+73c1adc8d887: Waiting
+94ce44f61a11: Waiting
+8842d3e40910: Preparing
+4fc69acb0b71: Waiting
+95dcb54e795b: Waiting
+9f06e59bd1c3: Waiting
+68dda0c9a8cd: Preparing
+8842d3e40910: Waiting
+f67191ae09b8: Preparing
+b2fd8b4c3da7: Preparing
+0de2edf7bff4: Preparing
+68dda0c9a8cd: Waiting
+f67191ae09b8: Waiting
+b2fd8b4c3da7: Waiting
+0de2edf7bff4: Waiting
+c30822d30af9: Layer already exists
+4e7f423eb37a: Layer already exists
+609d11e0f4b4: Layer already exists
+8f93bbd8b31e: Layer already exists
+97aa01bd17c0: Layer already exists
+a9f3018a8895: Layer already exists
+dd1440ad2291: Layer already exists
+a968f02b671c: Layer already exists
+01a4a7dcafb4: Layer already exists
+a07bf05cb83a: Layer already exists
+15529aaceccc: Layer already exists
+938d8c4aed3b: Layer already exists
+2d5fd1d51b22: Layer already exists
+a44f76867c74: Layer already exists
+197d7fdbc418: Layer already exists
+7f9845d65e79: Layer already exists
+5f32c050378c: Layer already exists
+80a39348b71c: Layer already exists
+1e0e965e204a: Layer already exists
+f2520cb6b5ab: Layer already exists
+15ea705dd451: Layer already exists
+99023a091a0c: Layer already exists
+46bf4324f787: Layer already exists
+88106997f260: Layer already exists
+60d3b8d0b2bd: Layer already exists
+bd801af9e896: Layer already exists
+752b620b32ec: Layer already exists
+2dc424094909: Layer already exists
+5aa592062747: Layer already exists
+016f33c52907: Layer already exists
+d0ebb5eb7295: Layer already exists
+58eee5e72f5a: Layer already exists
+9fbc8f4f0ca6: Layer already exists
+abc385e5e64f: Layer already exists
+e72af7ecedd5: Layer already exists
+4f77eb683260: Layer already exists
+94ce44f61a11: Layer already exists
+d0ea8a3fa41c: Layer already exists
+95dcb54e795b: Layer already exists
+4fc69acb0b71: Layer already exists
+42dc44a23eca: Layer already exists
+73c1adc8d887: Layer already exists
+9f06e59bd1c3: Layer already exists
+8842d3e40910: Layer already exists
+68dda0c9a8cd: Layer already exists
+b2fd8b4c3da7: Layer already exists
+f67191ae09b8: Layer already exists
+0de2edf7bff4: Layer already exists
+latest: digest: sha256:2bc7c975cd23ae06b72348c76ed505c637a16689faffe32e7e7be7f6bac51974 size: 10373
+Sending build context to Docker daemon  6.987MB
+Step 1/18 : ARG UBUNTU_VERSION=16.04
+Step 2/18 : FROM ubuntu:${UBUNTU_VERSION}
+ ---> 13c9f1285025
+Step 3/18 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 619367adaeb7
+Step 4/18 : RUN if [ $(cat /etc/os-release | grep 'VERSION_ID="16.04"' | wc -l) -ne 0 ]; then         apt-get update &&         apt-get install -y --no-install-recommends                 libcurl3-dev;     elif [ $(cat /etc/os-release | grep 'VERSION_ID="18.04"' | wc -l) -ne 0 ]; then         apt-get update &&         apt-get install -y --no-install-recommends                 libcurl4-openssl-dev;     else         echo "Ubuntu version must be either 16.04 or 18.04" &&         exit 1;     fi
+ ---> Using cache
+ ---> 1d4f94279e81
+Step 5/18 : RUN apt-get update &&     apt-get install -y --no-install-recommends             software-properties-common             autoconf             automake             build-essential             cmake             curl             git             libopencv-dev             libopencv-core-dev             libssl-dev             libtool             pkg-config             python             python-dev
+ ---> Using cache
+ ---> 0a10fd53b5bf
+Step 6/18 : RUN curl -O https://bootstrap.pypa.io/get-pip.py &&     python get-pip.py &&     rm get-pip.py
+ ---> Using cache
+ ---> 8b6fed59e5a3
+Step 7/18 : RUN pip install --upgrade setuptools grpcio-tools
+ ---> Using cache
+ ---> ffb715845d76
+Step 8/18 : WORKDIR /workspace
+ ---> Using cache
+ ---> 10fd672fd3d8
+Step 9/18 : COPY VERSION .
+ ---> Using cache
+ ---> a858e3d11f49
+Step 10/18 : COPY build build
+ ---> Using cache
+ ---> 4727085a793f
+Step 11/18 : COPY src/clients src/clients
+ ---> Using cache
+ ---> d27348acdc64
+Step 12/18 : COPY src/core src/core
+ ---> Using cache
+ ---> 3146c8bc7576
+Step 13/18 : RUN cd build &&     cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/workspace/install &&     (make -j16 trtis-clients || true) &&     make -j16 trtis-clients
+ ---> Using cache
+ ---> 50b16d131685
+Step 14/18 : RUN cd install &&     export VERSION=`cat /workspace/VERSION` &&     tar zcf /workspace/v$VERSION.clients.tar.gz *
+ ---> Using cache
+ ---> 59ca27b7ac2f
+Step 15/18 : COPY qa/images/mug.jpg images/mug.jpg
+ ---> Using cache
+ ---> f04d5a047872
+Step 16/18 : RUN pip install --upgrade install/python/tensorrtserver-*.whl numpy pillow
+ ---> Using cache
+ ---> 4f4dfe57b347
+Step 17/18 : ENV PATH //workspace/install/bin:${PATH}
+ ---> Using cache
+ ---> ed90bcb738dd
+Step 18/18 : ENV LD_LIBRARY_PATH /workspace/install/lib:${LD_LIBRARY_PATH}
+ ---> Using cache
+ ---> d430085e4dbe
+Successfully built d430085e4dbe
+Successfully tagged base-trtis-client:latest
+Sending build context to Docker daemon  242.2kB
+Step 1/7 : FROM base-trtis-client
+ ---> d430085e4dbe
+Step 2/7 : RUN apt-get install -y python3-pip
+ ---> Using cache
+ ---> 9c21bc7c88bc
+Step 3/7 : RUN pip3 install flask
+ ---> Using cache
+ ---> 2917f9508c14
+Step 4/7 : ADD src /workspace/web_server
+ ---> Using cache
+ ---> 0be87e90cd67
+Step 5/7 : WORKDIR /workspace/web_server
+ ---> Using cache
+ ---> d4f6ce8758b5
+Step 6/7 : EXPOSE 8080
+ ---> Using cache
+ ---> b682cfd9dd9a
+Step 7/7 : ENTRYPOINT ["python3", "flask_server.py"]
+ ---> Using cache
+ ---> 9a4ae9ac506f
+Successfully built 9a4ae9ac506f
+Successfully tagged muneer7589/k_pipeline_webapp:latest
+The push refers to repository [docker.io/muneer7589/k_pipeline_webapp]
+29d807efadf3: Preparing
+4258d47b185d: Preparing
+0a0d0ea073d5: Preparing
+48ca08745b01: Preparing
+ed15b9718fb2: Preparing
+bd2d5b5c6b90: Preparing
+65eeded70be9: Preparing
+6daf82c510e0: Preparing
+6bbef2777b65: Preparing
+8d48fe662c2c: Preparing
+e941bb6149ea: Preparing
+60434bd3110d: Preparing
+8c62b49d467a: Preparing
+a24883a26568: Preparing
+bd2d5b5c6b90: Waiting
+65eeded70be9: Waiting
+9e005230583e: Preparing
+6bbef2777b65: Waiting
+d0e22764df14: Preparing
+92d3f22d44f3: Preparing
+8d48fe662c2c: Waiting
+60434bd3110d: Waiting
+8c62b49d467a: Waiting
+10e46f329a25: Preparing
+e941bb6149ea: Waiting
+a24883a26568: Waiting
+24ab7de5faec: Preparing
+1ea5a27b0484: Preparing
+9e005230583e: Waiting
+d0e22764df14: Waiting
+92d3f22d44f3: Waiting
+24ab7de5faec: Waiting
+1ea5a27b0484: Waiting
+0a0d0ea073d5: Layer already exists
+29d807efadf3: Layer already exists
+48ca08745b01: Layer already exists
+ed15b9718fb2: Layer already exists
+4258d47b185d: Layer already exists
+bd2d5b5c6b90: Layer already exists
+6daf82c510e0: Layer already exists
+65eeded70be9: Layer already exists
+8d48fe662c2c: Layer already exists
+6bbef2777b65: Layer already exists
+e941bb6149ea: Layer already exists
+9e005230583e: Layer already exists
+8c62b49d467a: Layer already exists
+60434bd3110d: Layer already exists
+a24883a26568: Layer already exists
+d0e22764df14: Layer already exists
+92d3f22d44f3: Layer already exists
+24ab7de5faec: Layer already exists
+10e46f329a25: Layer already exists
+1ea5a27b0484: Layer already exists
+latest: digest: sha256:d360c28ea1628f46ead01ddd9da916498b4b4522b936f5e49de1a437c27ec3a8 size: 4516
+Sending build context to Docker daemon  10.75kB
+Step 1/9 : FROM ubuntu:16.04
+ ---> 13c9f1285025
+Step 2/9 : RUN apt-get update -y &&     apt-get install --no-install-recommends -y -q ca-certificates curl python-dev python-setuptools wget unzip
+ ---> Using cache
+ ---> eeaff3444795
+Step 3/9 : RUN easy_install pip &&     pip install pyyaml six requests
+ ---> Using cache
+ ---> 5073f4ec7a01
+Step 4/9 : RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+ ---> Using cache
+ ---> b1a09b0dfdf3
+Step 5/9 : RUN chmod +x ./kubectl
+ ---> Using cache
+ ---> 01a6eadc2262
+Step 6/9 : RUN mv ./kubectl /usr/local/bin
+ ---> Using cache
+ ---> 170c428db06b
+Step 7/9 : ADD src /workspace
+ ---> Using cache
+ ---> 2ab0bf6399db
+Step 8/9 : WORKDIR /workspace
+ ---> Using cache
+ ---> 914a3588f92a
+Step 9/9 : ENTRYPOINT ["python", "deploy_webapp.py"]
+ ---> Using cache
+ ---> 1719b3ac292a
+Successfully built 1719b3ac292a
+Successfully tagged muneer7589/k_pipeline_webapp_launcher:latest
+The push refers to repository [docker.io/muneer7589/k_pipeline_webapp_launcher]
+f4276b7c636f: Preparing
+ace71c5b4d4f: Preparing
+681e626e8a1d: Preparing
+ce3c7838a88e: Preparing
+505d7cb4f705: Preparing
+1e8ef3d35450: Preparing
+92d3f22d44f3: Preparing
+10e46f329a25: Preparing
+24ab7de5faec: Preparing
+1ea5a27b0484: Preparing
+1e8ef3d35450: Waiting
+24ab7de5faec: Waiting
+1ea5a27b0484: Waiting
+92d3f22d44f3: Waiting
+10e46f329a25: Waiting
+681e626e8a1d: Layer already exists
+505d7cb4f705: Layer already exists
+f4276b7c636f: Layer already exists
+ace71c5b4d4f: Layer already exists
+ce3c7838a88e: Layer already exists
+1e8ef3d35450: Layer already exists
+92d3f22d44f3: Layer already exists
+24ab7de5faec: Layer already exists
+10e46f329a25: Layer already exists
+1ea5a27b0484: Layer already exists
+latest: digest: sha256:a7d27f35d049b062f333e0a46ba73a96d57b7e325e89b6be5a71463434ed95e1 size: 2417
+persistentvolume/nvidia-workspace replaced
+persistentvolumeclaim/nvidia-workspace-read-claim unchanged
+Sending build context to Docker daemon   12.8kB
+Step 1/4 : FROM python:3.6
+ ---> 2e84eb3792eb
+Step 2/4 : RUN pip3 install https://storage.googleapis.com/ml-pipeline/release/latest/kfp.tar.gz --upgrade
+ ---> Using cache
+ ---> 4349ccd0b4bc
+Step 3/4 : WORKDIR /workspace
+ ---> Using cache
+ ---> f56aeddcedc9
+Step 4/4 : ENTRYPOINT ["python", "pipeline.py"]
+ ---> Using cache
+ ---> 66e6055b903c
+Successfully built 66e6055b903c
+Successfully tagged kubeflow-pipeline:latest
+inside inference server ContainerOp and value of name is:  deploy_inference_server
+Inside WeappLauncherOp and the value of name is:  deploy_webapp
+Pipeline compilation failed!

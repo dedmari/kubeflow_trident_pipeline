@@ -1,0 +1,12 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pipeline-workspace
+  namespace: kubeflow
+spec:
+  storageClassName: gold
+  accessModes:
+          - ReadWriteMany
+  resources:
+    requests:
+      storage: 20Gi
